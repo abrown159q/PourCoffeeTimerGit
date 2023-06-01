@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coffee Brewing Instructions</title>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Coffee Brewing Instructions</h1>
+  <div id="timer">00:00</div>
+  
+  <div id="instructions">
+    <p><strong>Step 0:</strong> Put 1/4 cup plus 1 tablespoon of coffee in the filter.</p>
+
+    <p><strong>Step 1:</strong> Boil water and put water in a mug to warm. Click the button below when ready to wait for 30 seconds.</p>
+	<button onclick="startTimer(30)">Start 30s Timer</button>
+
+    <p><strong>Step 2:</strong>  Pour 60 grams of water into filter to let coffee bloom for 45 seconds</p>
+	<button onclick="startTimer(45)">Start 45s Timer</button>
+
+	<p><strong>Step 3:</strong> Pour up to 420 grams of water. This should take between 3m and 3m 30s</p>
+	<button onclick="startTimer(210)">Start 3m 30s Timer</button>
+	
+  </div>
+
+
+  <br>
+
+  
+
+  <script>
+    function startTimer(duration) {
+      var timerDisplay = document.getElementById("timer");
+      var timer = duration, minutes, seconds;
+
+      var intervalId = setInterval(function() {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        timerDisplay.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          clearInterval(intervalId);
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
