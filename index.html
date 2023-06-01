@@ -60,13 +60,24 @@
         timerDisplay.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-
+		  
           clearInterval(intervalId);
-		  		 var mySound = new sound("correctBell.mp3");
-		mySound.play();
+playRandomBell();
         }
       }, 1000);
     }
+	function playRandomBell()
+	{
+		var mySound; 
+		var numBellSounds = 5;
+		var rand = Math.floor(Math.random() * numBellSounds);
+		//var fileName = "bell" + rand + ".mp3";
+		//var fileName = "bellSounds/bell" + "1" + ".mp3";
+		var fileName = "bellSounds/bell" + rand + ".mp3";
+		mySound = new sound(fileName);
+		mySound.play();
+	
+	}
   </script>
 </body>
 </html>
