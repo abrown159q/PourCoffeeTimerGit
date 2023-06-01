@@ -21,6 +21,8 @@
 	<p><strong>Step 3:</strong> Pour up to 420 grams of water. This should take between 3m and 3m 30s</p>
 	<button onclick="startTimer(210)">Start 3m 30s Timer</button>
 	
+	<button onclick="startTimer(2)">TEST</button>
+
   </div>
 
 
@@ -29,7 +31,22 @@
   
 
   <script>
+  function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
     function startTimer(duration) {
+	 
       var timerDisplay = document.getElementById("timer");
       var timer = duration, minutes, seconds;
 
@@ -43,7 +60,10 @@
         timerDisplay.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
+
           clearInterval(intervalId);
+		  		 var mySound = new sound("correctBell.mp3");
+		mySound.play();
         }
       }, 1000);
     }
