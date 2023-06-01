@@ -31,6 +31,8 @@
   
 
   <script>
+  
+  var mySong; 
   function sound(src) {
   this.sound = document.createElement("audio");
   this.sound.src = src;
@@ -47,6 +49,11 @@
 }
     function startTimer(duration) {
 	 
+	 
+		  if (duration >100)
+			playRandomLongSong();
+		  else
+			playRandomShortSong();
       var timerDisplay = document.getElementById("timer");
       var timer = duration, minutes, seconds;
 
@@ -60,9 +67,9 @@
         timerDisplay.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-		  
           clearInterval(intervalId);
-playRandomBell();
+		  mySong.stop();
+		  playRandomBell();
         }
       }, 1000);
     }
@@ -71,11 +78,31 @@ playRandomBell();
 		var mySound; 
 		var numBellSounds = 5;
 		var rand = Math.floor(Math.random() * numBellSounds);
-		//var fileName = "bell" + rand + ".mp3";
-		//var fileName = "bellSounds/bell" + "1" + ".mp3";
 		var fileName = "bellSounds/bell" + rand + ".mp3";
 		mySound = new sound(fileName);
 		mySound.play();
+	
+	}
+	function playRandomLongSong()
+	{
+		
+		var numSongs = 2;
+		var rand = Math.floor(Math.random() * numSongs);
+
+		var fileName = "music/longSong" + rand + ".mp3";
+		mySong = new sound(fileName);
+		mySong.play();
+	
+	}
+		function playRandomShortSong()
+	{
+		
+		var numSongs = 2;
+		var rand = Math.floor(Math.random() * numSongs);
+
+		var fileName = "music/shortSong" + rand + ".mp3";
+		mySong = new sound(fileName);
+		mySong.play();
 	
 	}
   </script>
